@@ -7,6 +7,9 @@ var app = new Vue({
       randPick: null,
       userScore: 0,
       computerScore: 0,
+	  lc_userScore: 0,	
+      lc_computerScore: 0,
+      number: 1
     };
   },
   methods: {
@@ -22,11 +25,12 @@ var app = new Vue({
           this.message = 'Computer wins';
           console.log('Computer wins');
           this.computerScore++;
+	      if ( this.number == this.computerScore ) { setTimeout( ()=>{ alert("You are lose in the game"); }, 100 ) };
         } else if (this.randPick == 'scissors') {
           console.log('User wins');
           this.message = 'User wins';
           this.userScore++;
-          this.lc_userScore = localStorage.userScore;
+          if ( this.number == this.userScore ) { setTimeout( ()=>{ alert("You are win in the game"); }, 100 ) };
         } else {
           console.log('Draw');
           this.message = 'Draw';
@@ -36,10 +40,12 @@ var app = new Vue({
           console.log('User wins');
           this.message = 'User wins';
           this.userScore++;
+          if ( this.number == this.userScore ) { setTimeout( ()=>{ alert("You are win in the game"); }, 100 ) };
         } else if (this.randPick == 'scissors') {
           console.log('Computer wins');
           this.message = 'Computer wins';
           this.computerScore++;
+          if ( this.number == this.computerScore ) { setTimeout( ()=>{ alert("You are lose in the game"); }, 100 ) };
         } else {
           console.log('Draw');
           this.message = 'Draw';
@@ -49,10 +55,12 @@ var app = new Vue({
           console.log('Computer wins');
           this.message = 'Computer wins';
           this.computerScore++;
+          if ( this.number == this.computerScore ) { setTimeout( ()=>{ alert("You are lose in the game"); }, 100 ) };
         } else if (this.randPick == 'paper') {
           console.log('User wins');
           this.message = 'User wins';
           this.userScore++;
+          if ( this.number == this.userScore ) { setTimeout( ()=>{ alert("You are win in the game"); }, 100 ) };
         } else {
           console.log('Draw');
           this.message = 'Draw';
@@ -76,6 +84,7 @@ var app = new Vue({
         "fa-hand-paper-o": this.randPick === "paper",
         "fa-hand-scissors-o": this.randPick === "scissors"
       };
-    }
-  }
+    },
+    
+  },
 });
