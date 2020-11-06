@@ -16,7 +16,7 @@
 	  </h1>
 
 	  <div>
-	  	<input placeholder="Enter here..." v-model="(number)"  type="number">
+	  	<input v-if="not_removed" @keyup.enter="remove_input()" placeholder="Enter here..." v-model="(number)"  type="number">
 	  	<br>
 	    <button @click="choose('rock')">
 	      <i class="fa fa-hand-rock-o"></i>

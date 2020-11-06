@@ -9,10 +9,12 @@ var app = new Vue({
       computerScore: 0,
 	  lc_userScore: 0,	
       lc_computerScore: 0,
-      number: 1
+      number: 1,
+      not_removed: true
     };
-  },
+  }, 
   methods: {
+  	
     choose: function (pick) {
       this.userPick = pick;
       const picks = ['rock', 'paper', 'scissors'];
@@ -20,58 +22,35 @@ var app = new Vue({
       this.setScore();
     },
     setScore: function () {
-      if (this.userPick == 'rock') {
-        if (this.randPick == 'paper') {
-          this.message = 'Computer wins';
-          console.log('Computer wins');
-          this.computerScore++;
-	      if ( this.number == this.computerScore ) { setTimeout( ()=>{ alert("You are lose in the game"); }, 100 ) };
-        } else if (this.randPick == 'scissors') {
-          console.log('User wins');
-          this.message = 'User wins';
-          this.userScore++;
-          if ( this.number == this.userScore ) { setTimeout( ()=>{ alert("You are win in the game"); }, 100 ) };
-        } else {
-          console.log('Draw');
-          this.message = 'Draw';
-        }
-      } else if (this.userPick == 'paper') {
-        if (this.randPick == 'rock') {
-          console.log('User wins');
-          this.message = 'User wins';
-          this.userScore++;
-          if ( this.number == this.userScore ) { setTimeout( ()=>{ alert("You are win in the game"); }, 100 ) };
-        } else if (this.randPick == 'scissors') {
-          console.log('Computer wins');
-          this.message = 'Computer wins';
-          this.computerScore++;
-          if ( this.number == this.computerScore ) { setTimeout( ()=>{ alert("You are lose in the game"); }, 100 ) };
-        } else {
-          console.log('Draw');
-          this.message = 'Draw';
-        }
-      } else {
-        if (this.randPick == 'rock') {
-          console.log('Computer wins');
-          this.message = 'Computer wins';
-          this.computerScore++;
-          if ( this.number == this.computerScore ) { setTimeout( ()=>{ alert("You are lose in the game"); }, 100 ) };
-        } else if (this.randPick == 'paper') {
-          console.log('User wins');
-          this.message = 'User wins';
-          this.userScore++;
-          if ( this.number == this.userScore ) { setTimeout( ()=>{ alert("You are win in the game"); }, 100 ) };
-        } else {
-          console.log('Draw');
-          this.message = 'Draw';
-        }
-      }
-    }
+    	if ((this.randPick == 'paper' && this.userPick == 'rock') || (this.randPick == 'scissors' && this.userPick == 'paper') || (this.randPick == 'rock' && this.userPick == 'scissors')) {
+	      this.message = 'Computer wins';
+	      console.log('Computer wins');
+	      this.computerScore++;
+	      if ( this.number == this.computerScore ) { setTimeout( ()=>{ alert("You are lose in the game");this.userScore = 0; this.computerScore = 0; this.message = null; this.not_removed = true; this.userPick = null; this.randPick = null; }, 100 ) };
+	    } else if ((this.randPick == 'scissors' && this.userPick == 'rock') || (this.randPick == 'paper' && this.userPick == 'scissors') || (this.randPick == 'rock' && this.userPick == 'paper')) {
+	      console.log('User wins');
+	      this.message = 'User wins';
+	      this.userScore++;
+	      if ( this.number == this.userScore ) { setTimeout( ()=>{ alert("You are win in the game");this.userScore = 0; this.computerScore = 0; this.message = null; this.not_removed = true; this.userPick = null; this.randPick = null; }, 100 ) };
+	    } else {
+	      console.log('Draw');
+	      this.message = 'Draw';
+	    }
+    },
+    remove_input: function() {
+    	this.not_removed = false;
+    },
+    // resetGame: function() {
+    // 	this.userScore = 0;
+    // 	this.computerScore = 0;
+    // 	this.message = null;
+    // 	this.not_removed = true;
+    // },
   },
   computed: {
     computedUser: function () {
       return {
-        "fa-circle-o-notch fa-spin": this.userPick === null,
+        // "fa-circle-o-notch fa-spin": this.userPick === null,
         "fa-hand-rock-o": this.userPick === "rock",
         "fa-hand-paper-o": this.userPick === "paper",
         "fa-hand-scissors-o": this.userPick === "scissors"
@@ -79,7 +58,7 @@ var app = new Vue({
     },
     computedRand: function () {
       return {
-        "fa-circle-o-notch fa-spin": this.randPick === null,
+        // "fa-circle-o-notch fa-spin": this.randPick === null,
         "fa-hand-rock-o": this.randPick === "rock",
         "fa-hand-paper-o": this.randPick === "paper",
         "fa-hand-scissors-o": this.randPick === "scissors"
