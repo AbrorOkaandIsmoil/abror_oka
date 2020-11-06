@@ -16,20 +16,23 @@
 	  </h1>
 
 	  <div>
-	  	<input v-if="not_removed" @keyup.enter="remove_input()" placeholder="Enter here..." v-model="(number)"  type="number">
+	  	<h1 v-if="not_removed"> Don don ziki Game </h1>
+	  	<h3 v-if="not_removed">How many cycles the should be?</h3>
+	  	<input v-if="not_removed" @keyup.enter="remove_input()" placeholder="Enter number..." v-model="(number)"  type="number">
 	  	<br>
-	    <button @click="choose('rock')">
+	    <button v-if="!not_removed" @click="choose('rock')">
 	      <i class="fa fa-hand-rock-o"></i>
 	    </button>
 
-	    <button @click="choose('paper')">
+	    <button v-if="!not_removed" @click="choose('paper')">
 	      <i class="fa fa-hand-paper-o"></i>
 	    </button>
-	    <button @click="choose('scissors')">
+
+	    <button v-if="!not_removed" @click="choose('scissors')">
 	        <i class="fa fa-hand-scissors-o"></i>
 	    </button>
 	  </div>
-	  <h1 v-cloak id="score">{{ userScore }} - {{ computerScore }}</h1>
+	  <h1 v-if="!not_removed" v-cloak id="score">{{ userScore }} - {{ computerScore }}</h1>
 	  <h4 v-cloak>{{ message }}</h4>
 	</div>
 	<script src="./js/vue-script.js"></script>

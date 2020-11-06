@@ -9,7 +9,7 @@ var app = new Vue({
       computerScore: 0,
 	  lc_userScore: 0,	
       lc_computerScore: 0,
-      number: 1,
+      number: null,
       not_removed: true
     };
   }, 
@@ -26,12 +26,12 @@ var app = new Vue({
 	      this.message = 'Computer wins';
 	      console.log('Computer wins');
 	      this.computerScore++;
-	      if ( this.number == this.computerScore ) { setTimeout( ()=>{ alert("You are lose in the game");this.userScore = 0; this.computerScore = 0; this.message = null; this.not_removed = true; this.userPick = null; this.randPick = null; }, 100 ) };
+	      if ( this.number == this.computerScore ) { setTimeout( ()=>{ alert("You are lose in the game");this.userScore = 0; this.computerScore = 0; this.message = null; this.not_removed = true; this.userPick = null; this.randPick = null; this.number = null; }, 100 ) };
 	    } else if ((this.randPick == 'scissors' && this.userPick == 'rock') || (this.randPick == 'paper' && this.userPick == 'scissors') || (this.randPick == 'rock' && this.userPick == 'paper')) {
 	      console.log('User wins');
 	      this.message = 'User wins';
 	      this.userScore++;
-	      if ( this.number == this.userScore ) { setTimeout( ()=>{ alert("You are win in the game");this.userScore = 0; this.computerScore = 0; this.message = null; this.not_removed = true; this.userPick = null; this.randPick = null; }, 100 ) };
+	      if ( this.number == this.userScore ) { setTimeout( ()=>{ alert("You are win in the game");this.userScore = 0; this.computerScore = 0; this.message = null; this.not_removed = true; this.userPick = null; this.randPick = null;this.number = null; }, 100 ) };
 	    } else {
 	      console.log('Draw');
 	      this.message = 'Draw';
@@ -40,12 +40,6 @@ var app = new Vue({
     remove_input: function() {
     	this.not_removed = false;
     },
-    // resetGame: function() {
-    // 	this.userScore = 0;
-    // 	this.computerScore = 0;
-    // 	this.message = null;
-    // 	this.not_removed = true;
-    // },
   },
   computed: {
     computedUser: function () {
