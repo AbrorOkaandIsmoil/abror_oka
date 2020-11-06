@@ -1,5 +1,5 @@
 #app {
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   max-width: 300px;
@@ -13,12 +13,12 @@ button {
 	position: relative;
 	justify-content: center;
 	text-align: center;
-	/*transform: translate(-50%, -50%);*/
 }
 input {
 	font-size: 35px;
 	margin-bottom: 15px;
 }
+
 .btn {
 	font-size: 35px;
 	text-align: center;
