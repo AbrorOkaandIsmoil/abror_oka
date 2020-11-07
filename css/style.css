@@ -1,11 +1,7 @@
+body {
+	text-align: center;
+}
 #app {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
   font-family: 'Nunito';
 }
 button {
